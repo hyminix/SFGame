@@ -13,7 +13,7 @@ class Secteur {
   // constantes secteurs
   const TAUX_ASTEROID = 220;
   const TAUX_PLANETE = 30;
-  const TAUX_VAISSEAU = 15;
+  const TAUX_EPAVE = 15;
   const TAUX_TROU_NOIR = 3;
   const VOLUME_SECTEUR_MIN = 20;
   const VOLUME_SECTEUR_MAX = 40;
@@ -34,9 +34,9 @@ class Secteur {
 
   // constantes epaves
   const NB_TYPE_EPAVE = 4;
-  const TAUX_EPAVE = [50,17,30,5];
-  const QTE_EPAVE_MIN = [2,1,1,1];
-  const QTE_EPAVE_MAX = [12,1,1,1];
+  const TAUX_TYPE_EPAVE = [50,17,30,5];
+  const NB_EPAVE_MIN = [2,1,1,1];
+  const NB_EPAVE_MAX = [12,1,1,1];
 
   public function __construct($posY, $posX) {
     $this->posX = $posX;
@@ -53,10 +53,10 @@ class Secteur {
         $this->generer_asteroids();
         break;
       case 2:
-        $this->generer_systeme();
+        $this->generer_planetes();
         break;
       case 3:
-        $this->epave = new Epave(0); // *** AJOUTER FONCTION DE TIRAGE DE TYPE D'EPAVE ***
+        $this->generer_epaves();
         break;
       case 4:
         // Trous nous
@@ -73,7 +73,7 @@ class Secteur {
     if($t <= self::TAUX_PLANETE) {
       $type=2;
     }
-    if($t <= self::TAUX_VAISSEAU) {
+    if($t <= self::TAUX_EPAVE) {
       $type=3;
     }
     if($t <= self::TAUX_TROU_NOIR) {
@@ -96,12 +96,12 @@ class Secteur {
     }
   }
 
-  private function generer_systeme() {
-    $corps_nb=rand(self::NB_PLANETE_MIN,self::NB_PLANETE_MAX);
+  private function generer_planetes() {
+    $planetes_nb=rand(self::NB_PLANETE_MIN,self::NB_PLANETE_MAX);
     $p=0;
-    for ($i=1;$i<=$corps_nb;$i++) {
+    for ($i=1;$i<=$planetes_nb;$i++) {
 			if (rand(1,100)<self::TAUX_LUNE and $p==1){ // teste si la planete est une lune
-          // new Lune;
+          new Lune;
       } else {
           new Planete;
       }
@@ -109,6 +109,22 @@ class Secteur {
     }
   }
 
+  private function generer_epaves() {
+    $tirage=rand(1,100);
+    $t=0; $epave_type=0;
+    while ($t<100) { // recherche du type d'epave
+    	$t+=self::TAUX_TYPE_EPAVE[$epave_type];
+    	if ($tirage<=$t) {
+    		$t=100;
+    	} else {
+    		$epave_type++;
+    	}
+    }
+    $epaves_nb=rand(self::NB_EPAVE_MIN[$epave_type],self::NB_EPAVE_MAX[$epave_type]);   // tirage du nombre d'epaves
+    for ($i=1;$i<=$epaves_nb;$i++) {
+      new Epave($epave_type);
+    }
+  }
 
   public function getPosX() {
     return $this->posX;

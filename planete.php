@@ -11,7 +11,7 @@ class Planete {
   private $minerais ; // array(minerai)
   private $liste_minerais= array(0,0,0,0,0,0,0,0,0,0);
 
-  const MINERAI_NOM = ["Or","Argent","Plomb","Uranium","Nickel","Cuivre","Aluminium","Fer"];
+  const MINERAI_NOM = ["Or","Argent","Plomb","Uranium","Cuivre","Titane","Aluminium","Fer"];
   const MINERAI_TAUX = [2,5,10,15,30,40,50,70];
   const MINERAI_NB = 8;
 
@@ -56,6 +56,5 @@ class Planete {
     return $this->diametre;
   }
 }
-
 
 ?>

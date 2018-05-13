@@ -1,12 +1,7 @@
 <?php
-  include("monde.php");
-  include("secteur.php");
-  include("asteroid.php");
-  include("minerai.php");
-  include("planete.php");
-  include("lune.php");
-  include("epave.php");
-  include("materiau.php");
+spl_autoload_register(function ($class_name) {
+    include $class_name . '.php';
+});
 ?>
 <!doctype html>
 <html lang="fr">

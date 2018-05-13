@@ -15,7 +15,7 @@ class Epave {
   const QTE_MATERIAU_ALIEN_EPAVE_MIN = [0,0,0,500];
   const QTE_MATERIAU_ALIEN_EPAVE_MAX = [0,0,0,2000];
 
-  const MATERIAU_NOM = ["Acier","Aluminium","Cuivre","Nickel","Plomb","Argent","Or","Uranium","Bolognium","Carbonium"];
+  const MATERIAU_NOM = ["Acier","Aluminium","Titane","Cuivre","Plomb","Argent","Or","Uranium","Bolognium","Carbonium"];
   const MATERIAU_ORI = [0,0,0,0,0,0,0,0,1,1];
   const MATERIAU_TAUX = [700,700,500,500,300,80,5,1,850,150];
   const MATERIAU_MODU = [100,100,30,20,10,1,1,1,100,1];
@@ -68,7 +68,7 @@ class Epave {
         $i=0;
       }
     }
-    return $liste_mat;
+    return $liste_mat; // renvoi une liste contenant la quantité de tous les materiaux
   }
 
 

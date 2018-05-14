@@ -21,12 +21,6 @@ td {
   background-color: #00CC00;
 }
 
-header {
-  display: inline-block;
-}
-#menu {
-  display: inline-block;
-}
 
 /* Tooltip container */
 .tooltip {

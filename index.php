@@ -52,10 +52,10 @@ spl_autoload_register(function ($class_name) {
        echo '<td width=20 bgcolor="'.$color.'" >';
        echo "<div class='tooltip'>".$sec->getSecteurType()."";
           echo "<span class='tooltiptext'>";
-            echo "Pos X = ".$sec->getPosX()."<br />";
-            echo "Pos Y = ".$sec->getPosY()."<br />";
-            echo "Volume du secteur = ".$sec->getVolumeSecteur()."<br />";
-
+            echo "Pos X: ".$sec->getPosX()."<br />";
+            echo "Pos Y: ".$sec->getPosY()."<br />";
+            echo "Volume: ".$sec->getSecteurVolume()."<br />";
+            echo "Ordre pop: ".$sec->getSecteurOrdre()."<br />";
           echo "</span>";
         echo "</div>";
        // echo "<a href='index.php?posx=".$sec->getPosX()."&posy=".$sec->getPosY()."'>S</a>";

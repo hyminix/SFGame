@@ -11,17 +11,24 @@
     <header>
       <nav>
         <ul id="menu-navigation">
-          <li><a href="#">Base</a></li>
-          <li><a href="#">Production</a></li>
-          <li><a href="#">Modules</a></li>
-          <li><a href="#">Carte</a></li>
-          <li><a href="#">Flotte</a></li>
-          <li><a href="#">Missions</a></li>
+          <li class="menu-navigation-li"><a href="#">Base</a></li>
+          <li lass="menu-navigation-li"><a href="#">Production</a></li>
+          <li class="menu-navigation-li"><a href="#">Modules</a></li>
+          <li class="menu-navigation-li"><a href="#">Carte</a></li>
+          <li class="menu-navigation-li"><a href="#">Flotte</a></li>
+          <li class="menu-navigation-li"><a href="#">Missions</a></li>
         </ul>
       </nav>
     </header>
     <section>
-      <div id="menu-information-production">a</div>
+      <div>
+        <ul id="menu-information-production">
+          <li>Niveau : 2</li>
+          <li>Flotte : 5</li>
+          <li>Mission Terminées : 3</li>
+          <li>Energie : 124/250</li>
+        </ul>
+      </div>
     </section>
     <section>
       <div id="container-base">a</div>

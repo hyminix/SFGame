@@ -33,7 +33,7 @@ nav {
   margin: auto;
   width: 100%;
 }
-ul {
+#menu-navigation {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -41,11 +41,11 @@ ul {
     background-color: #333;
 }
 
-li {
+#menu-navigation-li {
     float: left;
 }
 
-li a {
+#menu-navigation-li > a {
     display: block;
     color: white;
     text-align: center;
@@ -53,7 +53,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+#menu-navigation a:hover {
     background-color: #111;
 }
 .menu-active {

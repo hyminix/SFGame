@@ -20,13 +20,23 @@
         </ul>
       </nav>
     </header>
-    <section>
-      <div id="menu-information-production">a</div>
+    <section id="vueBase">
+      <div id="menuInfoJoueur">
+        <div id="niveauJoueur">Niveau : 2</div>
+        <div id="flotteJoueur">Flotte : 5</div>
+        <div id="missionTermineJoueur">Mission terminé : 20</div>
+        <div id="energieJoueur">Energie : 124/254</div>
+      </div>
     </section>
     <section>
       <div id="container-base">a</div>
     </section>
-
+    <section>
+      <div id="menuInteractionBase">
+        <div id="imageBatiment">Image du batiment</div>
+        <div id="affichageInteractionBatiment">- informations sur le bâtiment sélectionné<br /><br />+ possibilité d'ajouter un bâtiment sur un emplacement de base vide<br /><br />+ possibilité de lancer l'upgrade du bâtiment</div>
+      </div>
+    </section>
   </div>
 
 

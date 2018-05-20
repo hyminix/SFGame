@@ -1,7 +1,7 @@
 
 <?php
 // // ============================== CONSTANTES DE la CARTE ==============================
-define ('TAILLE_MAP_COTE',3); // nbre de secteurs par coté de la carte (ex:30 -> 30x30=90 secteurs)
+define ('TAILLE_MAP_COTE',24); // nbre de secteurs par coté de la carte (ex:30 -> 30x30=900 secteurs)
 define ('COEF_POPULATION',9); // coef de popultation= nb de secteurs moyen entre 2 joueurs
 
 // // ============================== CONSTANTES DES SECTEURS ==============================
@@ -22,8 +22,8 @@ define ('VOLUME_SECTEUR_MAX',40); // volume maximum d'asteroide d'un secteur de 
 
 define ('ASTEROIDE_TAUX',array(2,7,12,30,40,50)); // Chance de trouver chaque type d'asteroide: (du plus gros au plus petit)
 define ('ASTEROIDE_VOLUME',array(20,12,8,5,2,1)); // Volume dans le secteur de chaque type d'asteroide
-define ('ASTEROIDE_TAILLE_MIN',array(50,300,1000,5000,20000,100000)); // taille minimum de chaque type d'asteroide
-define ('ASTEROIDE_TAILLE_MAX',array(300,1000,5000,20000,100000,500000)); // taille maximum de chaque type d'asteroide
+define ('ASTEROIDE_TAILLE_MIN',array(100000,20000,5000,1000,300,50)); // taille minimum de chaque type d'asteroide
+define ('ASTEROIDE_TAILLE_MAX',array(500000,100000,20000,5000,1000,300)); // taille maximum de chaque type d'asteroide
 
 define ('MINERAI_VOLUME_MIN',array(10000,3000,1000,300,100,50)); // Volume de minerai minimum par type d'asteroide (en tonnes)
 define ('MINERAI_VOLUME_MAX',array(50000,10000,3000,1000,300,100)); // Volume de minerai maximum par type d'asteroide (en tonnes)
@@ -74,8 +74,8 @@ define ('QTE_MATERIAU_ALIEN_EPAVE_MAX',array(0,0,0,2000)); // Volume maximum de 
 
 define ('NOM_MATERIAU',array("Acier","Aluminium","Titane","Cuivre","Plomb","Argent","Or","Uranium","Bolognium","Carbonium")); // Nom de chaque type de materiau
 define ('ORIGINE_MATERIAU',array(0,0,0,0,0,0,0,0,1,1)); // Origine de chaque matériau (1=alien)
-define ('TAUX_MATERIAU_EPAVE',array(700,700,500,500,300,80,5,1,850,150)); // Chance de trouver chaque matériau dans les épaves (pour 1000=
-define ('MODULE_MATERIAU_EPAVE',array(100,100,30,20,10,1,1,1,100,1)); // Modularité volumique de chaque matériau (en kg)
+define ('TAUX_MATERIAU_EPAVE',array(700,600,500,500,300,80,5,1,850,150)); // Chance de trouver chaque matériau dans les épaves (pour 1000=
+define ('MODULE_MATERIAU_EPAVE',array(150,80,30,20,10,1,1,1,100,1)); // Modularité volumique de chaque matériau (en kg)
 
 
 ?>

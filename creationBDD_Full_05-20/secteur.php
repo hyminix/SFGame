@@ -2,39 +2,48 @@
 include_once ("constantes_carte.php");
 
 class Secteur {
-  private $SecteurId;
+  private $sql;
   private $secteurType;
   private $secteurVolume;
   private $secteurOrdre;
   private $posX;
   private $posY;
+  private $nom;
   private $asteroids;
   private $planete;
   private $epave;
 
-  public function __construct($posY, $posX) {
+  public function __construct($posX, $posY, $nouveauSecteur = NULL) {
+    $this->sql = database::getInstance();
     $this->posX = $posX;
     $this->posY = $posY;
+    $this->nom = 'S.'.$this->posX.'-'.$this->posY; // ----------------------------------->> A adapter
+    if($nouveauSecteur) {
+      $this->generer_nouveau_secteur();
+    }
+  }
+
+  private function generer_nouveau_secteur() {
     $this->secteurType = $this->randomise_secteur();
-    $this->secteurId = getSecteurIdBdd ($posX,$posY);
     $this->secteurVolume = rand(VOLUME_SECTEUR_MIN,VOLUME_SECTEUR_MAX);
     $this->secteurOrdre = 0;
     $this->asteroids = array();
-
-    affecteSecteurTypeBdd ($this->posX, $this->posY, $this->secteurType);
+    $this->sql->ajoutSecteur($this->posX, $this->posY, $this->nom);
+    $secteurId = $this->sql->getSecteurId ($this->posX, $this->posY);
+    $this->sql->affecteSecteurType ($secteurId, $this->secteurType);
 
     switch ($this->secteurType) {
       case 0:
         return 0;
         break;
       case 1:
-        $this->generer_asteroids();
+        $this->generer_asteroides();
         break;
       case 2:
-        // $this->generer_planetes();
+        $this->generer_planetes();
         break;
       case 3:
-        // $this->generer_epaves();
+        $this->generer_epaves();
         break;
       case 4:
         // Trous noir, rien à générer
@@ -44,7 +53,7 @@ class Secteur {
 
   private function randomise_secteur() {
     $t=mt_rand(1,1000);
-    $type=90; // secteur vide
+    $type=0;
     if($t <= TAUX_ASTEROIDE) {
       $type=1;
     }
@@ -60,14 +69,12 @@ class Secteur {
      return $type;
   }
 
-  private function generer_asteroids() {
-    $i=0;$n=1;
+  private function generer_asteroides() {
+    $i=0; $n=1;
     while ($this->secteurVolume<>0) {
       if (rand(1,100)<=ASTEROIDE_TAUX[$i] AND $this->secteurVolume-ASTEROIDE_VOLUME[$i]>=0) {
         $nom ='S.'.$this->posX.'.'.$this->posY.'-A'.$n; // ----------------------------------->> A adapter
-        $taille = rand(ASTEROIDE_TAILLE_MIN[$i],ASTEROIDE_TAILLE_MAX[$i]);
-        $asteroideId = ajoutAsteroideBdd($this->posX,$this->posY,$taille,$nom);
-        array_push($this->asteroids, new Asteroid(rand(MINERAI_VOLUME_MIN[$i],MINERAI_VOLUME_MAX[$i]),$asteroideId));
+        array_push($this->asteroids, new Asteroid($this->posX, $this->posY, $i, $nom));
         $this->secteurVolume-=ASTEROIDE_VOLUME[$i];
         $n++;
       }
@@ -75,7 +82,6 @@ class Secteur {
       if ($i==count(ASTEROIDE_VOLUME)) {
         $i=0;
       }
-
     }
   }
 
@@ -84,28 +90,30 @@ class Secteur {
     $p=0;
     for ($i=1;$i<=$planetes_nb;$i++) {
 			if (rand(1,100)<TAUX_LUNE and $p==1){ // teste si la planete est une lune
-          new Lune;
+          $lune=1;
       } else {
-          new Planete;
+          $lune=0;
       }
+      new Planete($this->posX, $this->posY, $lune);
     	$p=1;
     }
   }
 
   private function generer_epaves() {
     $tirage=rand(1,100);
-    $t=0; $epave_type=0;
+    $t=0; $type=0;
     while ($t<100) { // recherche du type d'epave
-    	$t+=TAUX_TYPE_EPAVE[$epave_type];
+    	$t+=TAUX_TYPE_EPAVE[$type];
     	if ($tirage<=$t) {
     		$t=100;
     	} else {
-    		$epave_type++;
+    		$type++;
     	}
     }
-    $epaves_nb=rand(NB_EPAVE_MIN[$epave_type],NB_EPAVE_MAX[$epave_type]);   // tirage du nombre d'epaves
+    $epaves_nb=rand(NB_EPAVE_MIN[$type],NB_EPAVE_MAX[$type]);   // tirage du nombre d'epaves
     for ($i=1;$i<=$epaves_nb;$i++) {
-      new Epave($epave_type);
+      $nom ='S.'.$this->posX.'.'.$this->posY.'-E'.$i; // ----------------------------------->> A adapter
+      new Epave($this->posX, $this->posY, $type, $nom);
     }
   }
 

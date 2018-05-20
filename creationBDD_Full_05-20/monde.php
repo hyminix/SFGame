@@ -13,8 +13,8 @@ class Monde {
 
 
   public function __construct() {
-    $this->x_depart = intval(TAILLE_MAP_COTE/2);
-    $this->y_depart = intval(TAILLE_MAP_COTE/2);
+    $this->x_depart = intval(TAILLE_MAP_COTE/2)+1;
+    $this->y_depart = intval(TAILLE_MAP_COTE/2)+1;
     $this->sql = database::getInstance();
     $this->generer_nouveau_monde();
   }

@@ -34,7 +34,7 @@ class AsteroidBase {
     $type=0; // type de minerai
     foreach($this->liste_minerais as $arrayQuantiteMinerai) {
       array_push($this->minerais, new Minerai($type, $arrayQuantiteMinerai, $this->asteroideId,0));
-      $i++;
+      $type++;
     }
   }
 

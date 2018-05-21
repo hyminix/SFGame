@@ -19,7 +19,7 @@ spl_autoload_register(function ($class_name) {
 
 <?php
   $sql = database::getInstance();
-  //$monde = new Monde();
+  $type=0;
 
   // --------------------- affichage de la carte ---------------------
   echo '<table border="1"><tr>';

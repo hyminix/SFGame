@@ -16,10 +16,14 @@ spl_autoload_register(function ($class_name) {
 
 
 <?php
+  $timestamp_debut = microtime(true);
   $monde = new Monde();
+  $timestamp_fin = microtime(true);
+  $dureeScript=intval($timestamp_fin - $timestamp_debut);
+  echo '<br><br> Durée de génération: '.$dureeScript.' secondes';
+  echo '<br><br><a href="visu_carte.php"> Voir la carte</a>';
+
   $secteursMonde = $monde->getSecteurs();
-
-
   echo "<br><br><br><table>";
   foreach ($secteursMonde as $secteurs) {
     echo "<tr>";

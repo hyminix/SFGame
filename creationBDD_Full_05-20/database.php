@@ -43,7 +43,7 @@ class database {
 		$req->bindValue(":posy", $y);
 		$req->bindValue(":nom", $nom);
 	  $req->execute();
-		echo '<br><b>Ajout secteur en '.$x."-".$y."</b><br>";
+		echo '<br><b>Ajout secteur en '.$x."-".$y."</b>";
 		return self::$bdd->lastInsertId();
 	}
 
@@ -84,7 +84,6 @@ class database {
 		$req->bindValue("asteroide_id", $asteroide_id);
 	  $req->execute();
 	  $req->closeCursor();
-	  //echo 'Secteur Id: '.$secteur_id.' --> Ajout asteroide Id: '.$asteroide_id.'<br>';
 		echo '(S:'.$secteur_id.'>A:'.$asteroide_id.') - ';
 	  return $asteroide_id;
 	}
@@ -121,7 +120,7 @@ class database {
 		$req->bindValue("planete_id", $planete_id);
 	  $req->execute();
 	  $req->closeCursor();
-	  echo 'Secteur Id: '.$secteur_id.' --> Ajout planete Id: '.$planete_id.'<br>';
+		echo '(S:'.$secteur_id.'>P:'.$planete_id.') - ';
 	  return $planete_id;
 	}
 
@@ -156,7 +155,7 @@ class database {
 		$req->bindValue("epave_id", $epave_id);
 	  $req->execute();
 	  $req->closeCursor();
-	  echo 'Secteur id: '.$secteur_id.' --> Ajout epave Id: '.$epave_id.'<br>';
+		echo '(S:'.$secteur_id.'>E:'.$epave_id.') - ';
 	  return $epave_id;
 	}
 
